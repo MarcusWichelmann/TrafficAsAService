@@ -1,0 +1,30 @@
+﻿@page
+@model IndexModel
+
+<div class="text-center">
+    <h3>Haben Sie auch zu viel Datenvolumen? Hier wird Ihnen geholfen!</h3>
+
+    <p>
+        Unser einzigartiger Service verbraucht ihr Datenvolumen
+
+        Steht nur zur verfügung IPv6, ...
+
+        Link pass telekom
+
+        Link Twitter
+    </p>
+
+    @if (!Model.IsIPv6)
+    {
+        <div class="alert alert-danger">
+            <p class="font-weight-bold">Legacy IP wird nicht unterstützt!</p>
+            <p>Bitte verbinden Sie sich mit dieser Website über richtiges Internet (IPv6) um von unseren Diensten gebrauch machen zu können.</p>
+        </div>
+    }
+    else
+    {
+        <form method="post">
+            <button class="btn btn-primary">Jetzt 100MB verbraten!</button>
+        </form>
+    }
+</div>
