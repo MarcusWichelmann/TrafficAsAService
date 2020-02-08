@@ -1,30 +1,42 @@
 ﻿@page
 @model IndexModel
 
-<div class="text-center">
-    <h3>Haben Sie auch zu viel Datenvolumen? Hier wird Ihnen geholfen!</h3>
+<h3 class="text-center mb-4">Haben Sie auch zu viel Datenvolumen? Hier wird Ihnen geholfen!</h3>
 
-    <p>
-        Unser einzigartiger Service verbraucht ihr Datenvolumen
+<p>
+    Unser einzigartiger Service hilft Ihnen, Ihr mobiles Datenvolumen schneller loszuwerden. Einfach über Ihren Mobilfunk-Zugang diese Seite aufrufen und den Button solange betätigen, bis nichts mehr da ist. Geld verlieren war noch nie so einfach!
+</p>
+<p>
+    Als Telekom-Kunde können Sie den Fortschritt unserer Dienstleistung unter <a href="http://pass.telekom.de/" target="_blank">pass.telekom.de</a> jederzeit begutachten. Möglicherweise dauert es ein paar Sekunden, bis der verbrauchte Traffic dort korrekt angezeigt wird. Bitte haben Sie etwas Geduld.
+</p>
+<p>
+    Los geht'!
+</p>
 
-        Steht nur zur verfügung IPv6, ...
+@if (!Model.IsIPv6)
+{
+    <div class="alert alert-danger">
+        <p class="font-weight-bold">Legacy IP wird nicht unterstützt!</p>
+        <p>Bitte verbinden Sie sich mit dieser Website über richtiges Internet (IPv6) um von unserer Dienstleistung gebrauch machen zu können!</p>
+    </div>
+}
+else
+{
+    <form method="post" class="mb-3">
+        <button class="btn btn-primary">Jetzt 100MB verbraten!</button>
+    </form>
 
-        Link pass telekom
+    <div class="alert alert-warning">
+        <p class="font-weight-bold">Disclaimer</p>
+        <p class="mb-0">Vorsicht, das funktioniert wirklich! Bei Betätigung des obigen Buttons wird Ihre IP-Adresse mit Müll-Daten zugespammt. Wir, die Ersteller dieser Website, übernehmen <b>keine Haftung</b> für jegliche Kosten, die Ihnen dadurch entstehen.</p>
+        <p></p>
+    </div>
+}
 
-        Link Twitter
+<div class="text-muted small mt-4">
+    <p class="font-weight-bold mb-0">Wie funktioniert's?</p>
+    <p class="mb-0">
+        Bei Betätigung des Buttons sendet der Server automatisch einen 100MB großen UDP-Datenstrom an die IP-Adresse, mit der die Seite aufgerufen wurde. Sofern Sie mit IPv6 verbunden sind, wird der Provider diesen Traffic Ihrem Daten-Tarif zuordnen und die übertragenen Daten von Ihrem verfügbaren Volumen abrechnen.
+        Dies funktioniert selbst dann, wenn Ihr Endgerät nur sehr schlechten Empfang hat und die Daten Ihr Ziel somit garnicht erreichen.
     </p>
-
-    @if (!Model.IsIPv6)
-    {
-        <div class="alert alert-danger">
-            <p class="font-weight-bold">Legacy IP wird nicht unterstützt!</p>
-            <p>Bitte verbinden Sie sich mit dieser Website über richtiges Internet (IPv6) um von unseren Diensten gebrauch machen zu können.</p>
-        </div>
-    }
-    else
-    {
-        <form method="post">
-            <button class="btn btn-primary">Jetzt 100MB verbraten!</button>
-        </form>
-    }
 </div>

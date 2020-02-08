@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
@@ -16,7 +14,7 @@ namespace TrafficAsAService.Pages
         private readonly ILogger<IndexModel> _logger;
 
         public bool IsIPv6 { get; set; }
-        
+
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
@@ -35,7 +33,7 @@ namespace TrafficAsAService.Pages
         public async Task<IActionResult> OnPostAsync()
         {
             Initialize();
-            
+
             IPAddress clientIp = HttpContext.Connection.RemoteIpAddress;
 
             if (clientIp.AddressFamily != AddressFamily.InterNetworkV6)
