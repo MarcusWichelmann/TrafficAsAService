@@ -22,7 +22,8 @@ namespace TrafficAsAService.Pages
 
         private void Initialize()
         {
-            IsIPv6 = HttpContext.Connection.RemoteIpAddress.AddressFamily == AddressFamily.InterNetworkV6;
+            IPAddress ipAddress = HttpContext.Connection.RemoteIpAddress;
+            IsIPv6 = ipAddress.AddressFamily == AddressFamily.InterNetworkV6 && !ipAddress.IsIPv4MappedToIPv6 ;
         }
 
         public void OnGet()
@@ -34,13 +35,10 @@ namespace TrafficAsAService.Pages
         {
             Initialize();
 
-            IPAddress clientIp = HttpContext.Connection.RemoteIpAddress;
-
-            if (clientIp.AddressFamily != AddressFamily.InterNetworkV6)
-            {
-                _logger.LogInformation($"Client {clientIp} hat kein IPv6... Dienst nicht verfügbar.");
+            if (!IsIPv6)
                 return Page();
-            }
+
+            IPAddress clientIp = HttpContext.Connection.RemoteIpAddress;
 
             _logger.LogInformation($"Client {clientIp} war blöd genug den Knopf zu drücken... Sende 100MB...");
 
