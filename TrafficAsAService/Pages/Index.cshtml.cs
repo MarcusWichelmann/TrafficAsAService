@@ -45,7 +45,7 @@ namespace TrafficAsAService.Pages
             using var udpClient = new UdpClient(AddressFamily.InterNetworkV6);
             await using var fileStream = new FileStream("file.bin", FileMode.Open);
 
-            Memory<byte> buffer = new byte[65000];
+            Memory<byte> buffer = new byte[1400];
             while (true)
             {
                 int read = await fileStream.ReadAsync(buffer, HttpContext.RequestAborted);
