@@ -23,7 +23,12 @@
 else
 {
     <form method="post" class="mb-3">
-        <button class="btn btn-primary">Jetzt 100MB verbraten!</button>
+        <div class="d-flex flex-row">
+            <button class="btn btn-primary">Jetzt 100MB verbraten!</button>
+            <div class="ml-3 align-self-center text-muted">
+                Gesamtes verschwendetes Datenvolumen: @Model.WastedMegabytes MB
+            </div>
+        </div>
     </form>
 
     <div class="alert alert-warning">

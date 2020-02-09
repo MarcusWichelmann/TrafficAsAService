@@ -16,6 +16,8 @@ namespace TrafficAsAService.Pages
 
         public bool IsIPv6 { get; set; }
 
+        public int WastedMegabytes { get; set; }
+
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
@@ -25,6 +27,8 @@ namespace TrafficAsAService.Pages
         {
             IPAddress ipAddress = HttpContext.Connection.RemoteIpAddress;
             IsIPv6 = ipAddress.AddressFamily == AddressFamily.InterNetworkV6 && !ipAddress.IsIPv4MappedToIPv6;
+
+            WastedMegabytes = int.TryParse(System.IO.File.ReadAllText("wasted.txt"), out int wastedMegabytes) ? wastedMegabytes : 0;
         }
 
         public void OnGet()
@@ -38,6 +42,10 @@ namespace TrafficAsAService.Pages
 
             if (!IsIPv6)
                 return;
+
+            // Nicht schön, aber hässlich
+            WastedMegabytes += 100;
+            System.IO.File.WriteAllText("wasted.txt", WastedMegabytes.ToString());
 
             IPAddress clientIp = HttpContext.Connection.RemoteIpAddress;
 
