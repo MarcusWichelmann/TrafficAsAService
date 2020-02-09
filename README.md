@@ -7,7 +7,9 @@ Bisher scheint ausschließlich eingehender, nicht related, ICMPv6 Traffic blocki
 
 Wir haben das ganze nun auf die Spitze getrieben und uns zu Nutze gemacht, dass UDP Verbindungslos ist und eingehender UDP/IPv6 Traffic nicht direkt im Telekom Backbone blockiert wird.
 Folglich kann man unproblematisch UDP Pakete an die IPv6-Adresse, die sich mit dem Webserver verbindet, schicken, wobei es unerheblich ist, ob auf dem Endgerät auch wirklich ein UDP Server auf Port 4242 lauscht.
+
 Die Datenabrechnung erfolgt allerdings scheinbar nicht auf Basis wie viele Daten wirklich beim Endgerät angekommen sind, sondern wie viele Daten, die für den Kunden bestimmt sind, durch das Telekom Backbone, geschickt wurden.
+
 Verbindet man sein Endgerät nun über 2G mit dem Telekom Mobilfunk, so können innerhalb von 5s unmöglich 100MB an das Endgerät geschickt werden, sodass der Traffic vermutlich bei der Übertragung zwischen Backbone und Endgerät gedroppt wird.
 Dennoch werden 100MB beim Kunden abgerechnet.
 
@@ -17,7 +19,7 @@ https://twitter.com/tschaeferm/status/1223319089730539520
 ## Problem
 Es reicht ausschließlich die IPv6-Adresse eine beliebigen Endgerätes im Mobilfunknetz zu kennen. Somit könnte ein Angreifer rein durch das Aufrufen einer Webseite das gesamte Datenvolumen eines Kunden verbrauchen ohne z.B. explizit eine Datei herunterladen zu müssen.
 Der Verbrauch des Datenvolumens ist außerdem nicht auf 100MB beschränkt. So lässt sich mit einfachen Linux Boardmitteln auch unproblematisch komplett `/dev/urandom` an das Mobilfunkendgerät schicken, wie wir hier ausprobiert haben:
-https://twitter.com/maichelmann/status/1226242471291768832?s=20
+https://twitter.com/maichelmann/status/1226242471291768832
 Ich trauere immer noch über mein Datenvolumen :).
 
 ## Lösung
